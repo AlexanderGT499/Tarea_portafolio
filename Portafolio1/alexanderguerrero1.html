@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-style="minimal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Guerrero | Portafolio Profesional</title>
+  <meta name="description" content="Portafolio profesional de Alexander Guerrero - Ingeniería en Sistemas de Información, EPN." />
+  
+  <!-- Iconos de Lucide y Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ==========================================================================
+       VARIABLES CSS & THEMES (Heurística 4: Consistencia y Estándares)
+       ========================================================================== */
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    /* Tema Oscuro (Por defecto) */
+    [data-theme="dark"] {
+      --bg-body: #0b0f19;
+      --bg-surface: #121826;
+      --bg-card: #182234;
+      --bg-card-hover: #1f2c42;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --primary-light: rgba(59, 130, 246, 0.15);
+      --accent: #06b6d4;
+      --whatsapp-color: #25D366;
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Tema Claro */
+    [data-theme="light"] {
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: rgba(37, 99, 235, 0.1);
+      --accent: #0891b2;
+      --whatsapp-color: #25D366;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Modificadores de Diseño (3 Estilos) */
+    [data-style="bento"] .card {
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    [data-style="cyber"] {
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --accent: #06b6d4;
+      --font-main: 'Fira Code', monospace;
+    }
+    [data-style="cyber"] .card {
+      border: 1px solid var(--primary);
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ==========================================================================
+       1. VISIBILIDAD DEL ESTADO DEL SISTEMA (BARRA DE PROGRESO)
+       ========================================================================== */
+    #progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 9999;
+    }
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.1s ease-out;
+    }
+
+    /* ==========================================================================
+       BARRA DE NAVEGACIÓN Y ACCESOS RÁPIDOS (Heurísticas 1, 3, 6 y 7)
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(18, 24, 38, 0.85);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.88);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-link {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .control-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+    .control-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       SECCIÓN HERO (Presentación & Foto Profesional)
+       ========================================================================== */
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+      align-items: center;
+      padding: 3rem 0;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero-badge span.pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 rgba(59, 130, 246, 0.4);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      max-width: 580px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: var(--primary);
+    }
+    .hero-photo-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .photo-frame {
+      width: 290px;
+      height: 340px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--border-color);
+      position: relative;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(18, 24, 38, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       TARJETAS Y SECCIONES MODULARES
+       ========================================================================== */
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      transition: var(--transition-smooth);
+    }
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       HABILIDADES TÉCNICAS & BLANDAS (Heurística 6: Reconocer antes que recordar)
+       ========================================================================== */
+    .skills-category {
+      margin-bottom: 1.5rem;
+    }
+    .skills-category h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-tag {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+    }
+    .skill-tag:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .skill-tag i {
+      color: var(--primary);
+    }
+
+    /* Idiomas */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .lang-bar {
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .lang-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 99px;
+    }
+
+    /* ==========================================================================
+       MODAL DE CONTACTO & ACCIONES DE COPIADO (Heurísticas 5, 7 y 9)
+       ========================================================================== */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.8rem;
+    }
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: var(--transition-smooth);
+    }
+    .copy-btn:hover {
+      background: var(--primary-light);
+    }
+
+    /* ==========================================================================
+       BOTÓN FLOTANTE DE WHATSAPP (ESQUINA INFERIOR IZQUIERDA)
+       ========================================================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background-color: var(--whatsapp-color);
+      color: #ffffff !important;
+      border-radius: 50px;
+      padding: 10px 18px 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55);
+    }
+    .whatsapp-float i {
+      font-size: 1.5rem;
+    }
+
+    /* ==========================================================================
+       TOAST FEEDBACK (Heurística 1 & 9)
+       ========================================================================== */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--primary);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 9999;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 868px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-subtitle {
+        margin: 0 auto 1.5rem;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-photo-wrapper {
+        order: -1;
+      }
+      .photo-frame {
+        width: 240px;
+        height: 280px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Barra de progreso de lectura (Heurística 1: Visibilidad del estado) -->
+  <div id="progress-container" aria-label="Progreso de lectura">
+    <div id="progress-bar"></div>
+  </div>
+
+  <!-- Barra de navegación con accesos rápidos y controles -->
+  <header>
+    <div class="nav-container">
+      <a href="#inicio" class="brand">
+        <span>AG</span>
+        <span class="brand-tag">Sistemas EPN</span>
+      </a>
+
+      <!-- Botones de Acceso Rápido -->
+      <ul class="nav-links">
+        <li><a href="#perfil" class="nav-link">Perfil</a></li>
+        <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+        <li><a href="#estudios" class="nav-link">Estudios</a></li>
+        <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+
+      <!-- Controles de Usuario (Tema y Diseño) -->
+      <div class="controls">
+        <!-- Selector de Estilos (Diseños 1, 2, 3) -->
+        <button id="styleToggle" class="control-btn" title="Alternar entre los 3 conceptos de diseño" aria-label="Cambiar estilo de diseño">
+          <i class="fa-solid fa-palette"></i>
+          <span id="styleText">Diseño 1</span>
+        </button>
+
+        <!-- Conmutador Light/Dark Mode -->
+        <button id="themeToggle" class="control-btn" title="Cambiar tema claro / oscuro" aria-label="Cambiar modo claro y oscuro">
+          <i class="fa-solid fa-sun" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container" id="inicio">
+
+    <!-- SECCIÓN HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Disponible para proyectos y pasantías
+        </div>
+        <h1>Hola, soy <span>Alexander Guerrero</span></h1>
+        <p class="hero-subtitle">
+          Estudiante de <strong>Ingeniería en Sistemas de Información</strong> en la 
+          <strong>Escuela Politécnica Nacional</strong>. Apasionado por las redes, desarrollo backend, arquitectura con Docker y bases de datos.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane"></i> Contactar ahora
+          </a>
+          <a href="#habilidades" class="btn btn-outline">
+            <i class="fa-solid fa-layer-group"></i> Ver Habilidades
+          </a>
+          <button class="btn btn-outline" onclick="copyContact('alexanderg10@outlook.com', 'Correo')" title="Copiar correo">
+            <i class="fa-regular fa-copy"></i> Copiar Correo
+          </button>
+        </div>
+      </div>
+
+      <!-- Fotografía con Traje y Corbata -->
+      <div class="hero-photo-wrapper">
+        <div class="photo-frame">
+          <img src="foto.jpg" alt="Retrato profesional de Alexander Guerrero con traje y corbata" />
+          <div class="photo-tag">
+            <strong>Alexander Guerrero</strong><br />
+            <small>Ingeniería en Sistemas - EPN</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: PERFIL PROFESIONAL -->
+    <section id="perfil" style="padding: 2.5rem 0;">
+      <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> Perfil Profesional</h2>
+      <p class="section-subtitle">Compromiso, rigor técnico y orientación al trabajo en equipo.</p>
+      
+      <div class="card">
+        <p class="card-desc" style="font-size: 1.05rem;">
+          Estudiante universitario de la <strong>Escuela Politécnica Nacional (EPN)</strong> cursando la carrera de <strong>Ingeniería en Sistemas de Información</strong>. 
+          Cuento con una sólida formación en lógica computacional, redes certificadas mediante <strong>CCNA1</strong> en CEC-EPN, contenedores con <strong>Docker</strong>, control de versiones con <strong>Git & GitHub</strong>, programación en <strong>Python</strong> y administración de bases de datos relacionales en <strong>PostgreSQL</strong>.
+          Destaco por mi capacidad de comunicación asertiva, comprensión de requerimientos técnicos, proactividad y eficiente organización para resolver desafíos de desarrollo y operaciones.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: HABILIDADES TÉCNICAS Y BLANDAS -->
+    <section id="habilidades" style="padding: 2.5rem 0;">
+      <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Habilidades & Certificaciones</h2>
+      <p class="section-subtitle">Tecnologías, metodologías y destrezas interpersonales que aplico.</p>
+
+      <div class="grid-3">
+        <!-- Card 1: Tecnologías y Desarrollo -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-brands fa-python"></i></div>
+            <div>
+              <h3>Desarrollo & Datos</h3>
+              <span class="card-meta">Lenguajes y Almacenamiento</span>
+            </div>
+          </div>
+          <div class="tags-container">
+            <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+            <span class="skill-tag"><i class="fa-solid fa-code"></i> SQL Relacional</span>
+            <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <!-- Card 2: DevOps, Redes e Infraestructura -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <div>
+              <h3>Infraestructura & Redes</h3>
+              <span class="card-meta">Certificaciones y Herramientas</span>
+            </div>
+          </div>
+          <div class="tags-container">
+            <span class="skill-tag"><i class="fa-solid fa-certificate"></i> CCNA1 (CEC-EPN)</span>
+            <span class="skill-tag"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
+            <span class="skill-tag"><i class="fa-brands fa-github"></i> GitHub</span>
+            <span class="skill-tag"><i class="fa-solid fa-diagram-project"></i> Redes LAN/IP</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Habilidades Blandas e Idiomas -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <div>
+              <h3>Soft Skills & Idiomas</h3>
+              <span class="card-meta">Competencias Humanas</span>
+            </div>
+          </div>
+          
+          <div class="skills-category">
+            <div class="tags-container" style="margin-bottom: 1rem;">
+              <span class="skill-tag">Comunicación efectiva</span>
+              <span class="skill-tag">Trabajo en equipo</span>
+              <span class="skill-tag">Organización</span>
+              <span class="skill-tag">Adaptabilidad</span>
+              <span class="skill-tag">Aprendizaje rápido</span>
+            </div>
+          </div>
+
+          <div class="lang-item">
+            <span>Español</span>
+            <strong>Nativo</strong>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" style="width: 100%;"></div></div>
+
+          <div class="lang-item" style="margin-top: 10px;">
+            <span>Inglés</span>
+            <strong>Intermedio</strong>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" style="width: 65%;"></div></div>
+
+          <div class="lang-item" style="margin-top: 10px;">
+            <span>Francés</span>
+            <strong>Básico</strong>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" style="width: 30%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: ESTUDIOS -->
+    <section id="estudios" style="padding: 2.5rem 0;">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Formación Académica</h2>
+      <p class="section-subtitle">Trayectoria académica y certificaciones de educación continua.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div>
+              <h3>Escuela Politécnica Nacional</h3>
+              <span class="card-meta">2024 - Actualidad | En curso</span>
+            </div>
+          </div>
+          <p class="card-desc">
+            <strong>Ingeniería en Sistemas de Información</strong>.<br />
+            Enfoque en desarrollo de software, modelamiento de bases de datos, redes avanzadas, ingeniería de requerimientos y sistemas distribuidos.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-school"></i></div>
+            <div>
+              <h3>Unidad Educativa Fiscal Los Shyris</h3>
+              <span class="card-meta">2017 - 2023 | Graduado</span>
+            </div>
+          </div>
+          <p class="card-desc">
+            <strong>Bachiller Técnico - Área Técnica TICs</strong>.<br />
+            Especialización en Informática con bases en programación, arquitectura de computadores, ofimática y mantenimiento preventivo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: EXPERIENCIA LABORAL & REFERENCIAS -->
+    <section id="experiencia" style="padding: 2.5rem 0;">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experiencia & Referencias</h2>
+      <p class="section-subtitle">Experiencia previa orientada a procesos y control de calidad.</p>
+
+      <div class="grid-2">
+        <!-- Experiencia -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+            <div>
+              <h3>Asistente Dental</h3>
+              <span class="card-meta">Consultorio Dental Bio-dent | 2023 - 2024</span>
+            </div>
+          </div>
+          <p class="card-desc">
+            Apoyo integral en la preparación y organización del área de trabajo, asistencia directa al profesional durante procedimientos clínicos y atención al paciente. Responsable del orden riguroso de instrumental, control de insumos y estricto cumplimiento de normas de bioseguridad.
+          </p>
+        </div>
+
+        <!-- Referencia -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-user-check"></i></div>
+            <div>
+              <h3>Referencia Laboral</h3>
+              <span class="card-meta">Contacto Verificable</span>
+            </div>
+          </div>
+          <p class="card-desc">
+            <strong>Doctor Mesías Simbaña</strong><br />
+            Especialista Odontológico - Bio-dent<br />
+            <span style="display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;">
+              <i class="fa-solid fa-phone" style="color: var(--primary);"></i> 0984586082
+            </span>
+          </p>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-outline" onclick="copyContact('0984586082', 'Teléfono de Referencia')">
+              <i class="fa-regular fa-copy"></i> Copiar Teléfono
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: CONTACTO DIRECTO -->
+    <section id="contacto" style="padding: 2.5rem 0;">
+      <h2 class="section-title"><i class="fa-solid fa-address-book"></i> Canales de Contacto</h2>
+      <p class="section-subtitle">Hablemos de nuevos proyectos, pasantías o colaboraciones de ingeniería.</p>
+
+      <div class="grid-2">
+        <!-- Listado de Contacto -->
+        <div class="card">
+          <h3>Información Directa</h3>
+          <p class="card-desc" style="margin-bottom: 1.25rem;">Haz clic en el icono para copiar al portapapeles o acceder directamente.</p>
+
+          <div class="contact-item">
+            <div class="contact-info">
+              <i class="fa-solid fa-phone" style="color: var(--primary);"></i>
+              <span><strong>Teléfono:</strong> 0988983198</span>
+            </div>
+            <button class="copy-btn" onclick="copyContact('0988983198', 'Teléfono')" title="Copiar teléfono">
+              <i class="fa-regular fa-copy"></i> Copiar
+            </button>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-info">
+              <i class="fa-solid fa-envelope" style="color: var(--primary);"></i>
+              <span><strong>Correo:</strong> alexanderg10@outlook.com</span>
+            </div>
+            <button class="copy-btn" onclick="copyContact('alexanderg10@outlook.com', 'Correo')" title="Copiar correo">
+              <i class="fa-regular fa-copy"></i> Copiar
+            </button>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-info">
+              <i class="fa-brands fa-linkedin" style="color: var(--primary);"></i>
+              <span><strong>LinkedIn:</strong> in/alexander-guerrero</span>
+            </div>
+            <a href="https://linkedin.com/in/alexander-guerrero" target="_blank" rel="noopener noreferrer" class="copy-btn" title="Ir a LinkedIn">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Acción Rápida -->
+        <div class="card" style="display: flex; flex-direction: column; justify-content: center; text-align: center; background: linear-gradient(145deg, var(--bg-card), var(--bg-surface));">
+          <div style="font-size: 2.5rem; color: var(--whatsapp-color); margin-bottom: 0.8rem;">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h3>¿Prefieres conversar por WhatsApp?</h3>
+          <p class="card-desc" style="margin: 0.8rem 0 1.5rem;">
+            Escríbeme directamente para coordinar entrevistas, reuniones o consultas técnicas.
+          </p>
+          <div>
+            <a href="https://wa.me/593988983198" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: var(--whatsapp-color);">
+              <i class="fa-brands fa-whatsapp"></i> Iniciar conversación
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       BOTÓN FLOTANTE DE WHATSAPP (ESQUINA INFERIOR IZQUIERDA - NO ESTORBA)
+       ========================================================================== -->
+  <a href="https://wa.me/593988983198" 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     aria-label="Contactar a Alexander Guerrero por WhatsApp al 0988983198"
+     title="Contactar vía WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- TOAST FEEDBACK VISUAL (Heurística 1 & 9) -->
+  <div id="toast" role="alert" aria-live="polite">
+    <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
+    <span id="toast-msg">Copiado al portapapeles</span>
+  </div>
+
+  <!-- ==========================================================================
+       SCRIPTS: LÓGICA DE INTERACCIÓN Y HEURÍSTICAS DE NIELSEN
+       ========================================================================== */ -->
+  <script>
+    // 1. Visibilidad del estado del sistema: Barra de progreso de lectura
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+      
+      // Actualizar enlace activo en navegación
+      updateActiveNavLink();
+    });
+
+    // 2. Control y Libertad del Usuario: Alternador de Modo Claro / Oscuro
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      htmlElement.setAttribute('data-theme', newTheme);
+      themeIcon.className = newTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      showToast(`Tema cambiado a modo ${newTheme === 'dark' ? 'oscuro' : 'claro'}`);
+    });
+
+    // 3. Flexibilidad: Alternador entre los 3 conceptos de diseño
+    const styleToggleBtn = document.getElementById('styleToggle');
+    const styleText = document.getElementById('styleText');
+    const styles = [
+      { id: 'minimal', label: 'Diseño 1 (Minimal Tech)' },
+      { id: 'bento', label: 'Diseño 2 (Bento Grid)' },
+      { id: 'cyber', label: 'Diseño 3 (Cyber Dev)' }
+    ];
+    let currentStyleIdx = 0;
+
+    styleToggleBtn.addEventListener('click', () => {
+      currentStyleIdx = (currentStyleIdx + 1) % styles.length;
+      const selectedStyle = styles[currentStyleIdx];
+      
+      htmlElement.setAttribute('data-style', selectedStyle.id);
+      styleText.textContent = `Diseño ${currentStyleIdx + 1}`;
+      showToast(`Aplicado: ${selectedStyle.label}`);
+    });
+
+    // 4. Prevención de errores y reconocimiento: Copiado amigable al portapapeles
+    function copyContact(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`${label} copiado exitosamente: ${text}`);
+        }).catch(() => {
+          fallbackCopyText(text, label);
+        });
+      } else {
+        fallbackCopyText(text, label);
+      }
+    }
+
+    function fallbackCopyText(text, label) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(`${label} copiado: ${text}`);
+      } catch (err) {
+        showToast(`No se pudo copiar automáticamente. Número/Dato: ${text}`);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // 5. Diagnóstico y retroalimentación: Toast emergente
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-msg');
+      msg.textContent = message;
+      toast.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // 6. Reconocer antes que recordar: Enlace activo en navegación
+    const sections = document.querySelectorAll('main > section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNavLink() {
+      let currentSectionId = '';
+      const scrollPosition = window.scrollY + 180;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
