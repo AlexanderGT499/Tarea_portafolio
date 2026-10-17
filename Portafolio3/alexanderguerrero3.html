@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-style="aurora">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Guerrero | Ingeniero en Sistemas de Información</title>
+  <meta name="description" content="Portafolio profesional de Alexander Guerrero - Ingeniería en Sistemas de Información, Escuela Politécnica Nacional." />
+
+  <!-- Google Fonts: Syne + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* VARIABLES Y SISTEMA DE DISEÑO (Heurística 4: Consistencia y Estándares) */
+    :root {
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-full: 9999px;
+    }
+
+    /* TEMA OSCURO (Default: Deep Slate / Obsidian) */
+    [data-theme="dark"] {
+      --bg-canvas: #090d16;
+      --bg-surface: #101626;
+      --bg-card: rgba(22, 30, 49, 0.75);
+      --bg-card-hover: rgba(30, 42, 69, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(99, 102, 241, 0.45);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --brand: #6366f1;
+      --brand-glow: rgba(99, 102, 241, 0.25);
+      --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+      --accent: #06b6d4;
+      --success: #10b981;
+      --whatsapp: #25D366;
+      --shadow-elevation: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      --glass-filter: blur(16px) saturate(180%);
+    }
+
+    /* TEMA CLARO (Clean Slate Paper) */
+    [data-theme="light"] {
+      --bg-canvas: #f6f8fc;
+      --bg-surface: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --bg-card-hover: rgba(248, 250, 252, 0.95);
+      --border-subtle: rgba(15, 23, 42, 0.08);
+      --border-hover: rgba(99, 102, 241, 0.5);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --brand: #4f46e5;
+      --brand-glow: rgba(79, 70, 229, 0.15);
+      --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0284c7 100%);
+      --accent: #0284c7;
+      --success: #059669;
+      --whatsapp: #25D366;
+      --shadow-elevation: 0 15px 35px -10px rgba(15, 23, 42, 0.08);
+      --glass-filter: blur(16px);
+    }
+
+    /* VARIANTES DE ESTILO */
+    [data-style="aurora"] .mesh-bg { display: block; }
+    
+    [data-style="editorial"] {
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --brand-gradient: linear-gradient(135deg, #0284c7 0%, #0f172a 100%);
+    }
+    [data-style="editorial"] .mesh-bg { display: none; }
+    [data-style="editorial"] .card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      backdrop-filter: none;
+    }
+
+    [data-style="cyber"] {
+      --font-body: 'JetBrains Mono', monospace;
+      --font-display: 'JetBrains Mono', monospace;
+      --brand: #10b981;
+      --brand-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      --accent: #34d399;
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+    }
+    [data-style="cyber"] .mesh-bg { display: none; }
+    [data-style="cyber"] .card {
+      background: #0a1118;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      line-height: 1.65;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 90px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .mesh-bg {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.1) 40%, rgba(6, 182, 212, 0.04) 70%, transparent 100%);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Barra de progreso de lectura */
+    #progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 10000;
+      background: transparent;
+    }
+    #progress-indicator {
+      height: 100%;
+      width: 0%;
+      background: var(--brand-gradient);
+      box-shadow: 0 0 12px var(--brand);
+      transition: width 0.12s ease-out;
+    }
+
+    /* Cabecera */
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 999;
+      padding: 0 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .nav-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      backdrop-filter: var(--glass-filter);
+      -webkit-backdrop-filter: var(--glass-filter);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 0.65rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-elevation);
+    }
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--brand-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px var(--brand-glow);
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.3px;
+    }
+    .logo-sub {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-item a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      position: relative;
+    }
+    .nav-item a:hover, .nav-item a.active {
+      color: var(--text-main);
+      background: var(--border-subtle);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .pill-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .pill-btn:hover {
+      border-color: var(--brand);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .hero-dashboard {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3.5rem;
+    }
+    .hero-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--success);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 rgba(16, 185, 129, 0.6);
+      animation: livePulse 2s infinite;
+    }
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 9px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .hero-dashboard h1 {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 1.25rem;
+    }
+    .text-gradient {
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-bio {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn-brand {
+      background: var(--brand-gradient);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px var(--brand-glow);
+      transition: var(--transition);
+    }
+    .btn-brand:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px var(--brand-glow);
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-weight: 600;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--brand);
+    }
+
+    /* Fotografía */
+    .portrait-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      box-shadow: var(--shadow-elevation);
+      backdrop-filter: var(--glass-filter);
+      text-align: center;
+    }
+    .portrait-img-box {
+      width: 100%;
+      height: 380px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .portrait-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.6s ease;
+    }
+    .portrait-card:hover .portrait-img-box img {
+      transform: scale(1.03);
+    }
+    .portrait-caption {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.3rem 0.5rem;
+    }
+    .portrait-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .portrait-univ {
+      font-size: 0.78rem;
+      color: var(--brand);
+      font-weight: 600;
+      display: block;
+    }
+
+    /* KPI strip */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.4rem;
+      backdrop-filter: var(--glass-filter);
+      transition: var(--transition);
+    }
+    .kpi-card:hover {
+      border-color: var(--brand);
+      transform: translateY(-3px);
+    }
+    .kpi-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kpi-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* Secciones */
+    .section-head {
+      margin-bottom: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      backdrop-filter: var(--glass-filter);
+      transition: var(--transition);
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-elevation);
+    }
+
+    /* Bento skills */
+    .bento-skills {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 0.9fr;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .skill-badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.2rem;
+    }
+    .tech-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .tech-pill:hover {
+      border-color: var(--brand);
+      background: var(--bg-card-hover);
+      color: var(--brand);
+      transform: translateY(-2px);
+    }
+    .tech-pill i {
+      font-size: 1rem;
+      color: var(--brand);
+    }
+    .cert-box {
+      border-left: 3px solid var(--brand);
+      background: rgba(99, 102, 241, 0.08);
+      padding: 1rem 1.2rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: 1rem;
+    }
+    .cert-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cert-issuer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Idiomas */
+    .lang-row { margin-top: 1.1rem; }
+    .lang-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .lang-track {
+      height: 6px;
+      background: var(--border-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    .lang-meter {
+      height: 100%;
+      background: var(--brand-gradient);
+      border-radius: var(--radius-full);
+    }
+
+    /* Timeline */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .timeline-node {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid var(--border-subtle);
+      margin-bottom: 1.8rem;
+    }
+    .timeline-node:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -7px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 4px var(--bg-surface);
+    }
+    .timeline-date {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+    .timeline-inst {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Contacto */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .contact-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .contact-left i {
+      font-size: 1.2rem;
+      color: var(--brand);
+      width: 24px;
+      text-align: center;
+    }
+    .contact-label {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      display: block;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .contact-val {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .copy-chip {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .copy-chip:hover {
+      color: var(--brand);
+      border-color: var(--brand);
+      background: var(--brand-glow);
+    }
+
+    /* WhatsApp flotante en esquina inferior izquierda */
+    .wa-floating-btn {
+      position: fixed;
+      bottom: 26px;
+      left: 26px;
+      background: #25D366;
+      color: #ffffff !important;
+      padding: 10px 18px 10px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      z-index: 9999;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .wa-floating-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.6);
+    }
+    .wa-icon-circ {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+
+    /* Toast */
+    #sys-toast {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      background: var(--bg-surface);
+      border: 1px solid var(--brand);
+      color: var(--text-main);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-elevation);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 10001;
+    }
+    #sys-toast.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1180px;
+      margin: 2rem auto 0;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-dashboard { grid-template-columns: 1fr; text-align: center; }
+      .hero-bio { margin: 0 auto 2rem; }
+      .hero-cta-group { justify-content: center; }
+      .portrait-card { max-width: 360px; margin: 0 auto; }
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .bento-skills { grid-template-columns: 1fr; }
+      .timeline-grid, .contact-layout { grid-template-columns: 1fr; }
+      .nav-items { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura (Heurística 1) -->
+  <div id="progress-track" aria-label="Progreso de lectura">
+    <div id="progress-indicator"></div>
+  </div>
+
+  <div class="mesh-bg"></div>
+
+  <!-- Cabecera -->
+  <header>
+    <div class="nav-shell">
+      <a href="#inicio" class="logo-group">
+        <div class="logo-badge">AG</div>
+        <div>
+          <span class="logo-text">Alexander Guerrero</span>
+          <span class="logo-sub">Ingeniería en Sistemas • EPN</span>
+        </div>
+      </a>
+
+      <!-- Botones de acceso rápido -->
+      <ul class="nav-items">
+        <li class="nav-item"><a href="#perfil" class="nav-anchor">Perfil</a></li>
+        <li class="nav-item"><a href="#habilidades" class="nav-anchor">Habilidades</a></li>
+        <li class="nav-item"><a href="#trayectoria" class="nav-anchor">Trayectoria</a></li>
+        <li class="nav-item"><a href="#contacto" class="nav-anchor">Contacto</a></li>
+      </ul>
+
+      <!-- Controles de tema y estilo -->
+      <div class="nav-actions">
+        <button id="designSwitcher" class="pill-btn" title="Alternar entre los 3 conceptos de diseño" aria-label="Cambiar estilo de diseño">
+          <i class="fa-solid fa-shapes"></i>
+          <span id="designLabel">Estilo: Aurora</span>
+        </button>
+
+        <button id="themeSwitcher" class="pill-btn" title="Alternar entre modo claro y oscuro" aria-label="Cambiar modo claro y oscuro">
+          <i class="fa-solid fa-sun" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrapper" id="inicio">
+
+    <!-- Hero -->
+    <section class="hero-dashboard">
+      <div class="hero-details">
+        <div class="hero-status-pill">
+          <span class="live-dot"></span>
+          Activo • Formación en Ingeniería & Redes
+        </div>
+        <h1>
+          Construyendo software sólido, <br />
+          <span class="text-gradient">redes y arquitectura cloud.</span>
+        </h1>
+        <p class="hero-bio">
+          Estudiante de <strong>Ingeniería en Sistemas de Información</strong> en la 
+          <strong>Escuela Politécnica Nacional</strong>. Combino fundamentos teóricos de redes certificados en 
+          <strong>CCNA1</strong> con destreza práctica en <strong>Python</strong>, entornos en <strong>Docker</strong>, 
+          control de versiones en <strong>Git & GitHub</strong> y gestión de datos con <strong>PostgreSQL</strong>.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contacto" class="btn-brand">
+            <i class="fa-solid fa-paper-plane"></i> Contactar ahora
+          </a>
+          <a href="#habilidades" class="btn-secondary">
+            <i class="fa-solid fa-code"></i> Explorar Stack
+          </a>
+          <button class="btn-secondary" onclick="copyValue('alexanderg10@outlook.com', 'Correo')" title="Copiar correo">
+            <i class="fa-regular fa-copy"></i> Copiar Correo
+          </button>
+        </div>
+      </div>
+
+      <!-- Tarjeta Fotográfica con traje y corbata -->
+      <div class="portrait-card">
+        <div class="portrait-img-box">
+          <img src="foto.jpg" alt="Foto profesional formal de Alexander Guerrero" />
+        </div>
+        <div class="portrait-caption">
+          <div>
+            <span class="portrait-name">Alexander Guerrero</span>
+            <span class="portrait-univ">EPN • Sistemas de Información</span>
+          </div>
+          <span class="tech-pill" style="padding: 4px 8px; font-size: 0.72rem;">
+            <i class="fa-solid fa-shield-halved"></i> CCNA1
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI Strip -->
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-num text-gradient">EPN</div>
+        <div class="kpi-label">Ingeniería en Sistemas de Información</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num"><i class="fa-solid fa-network-wired" style="color: var(--brand); font-size: 1.3rem;"></i> CCNA1</div>
+        <div class="kpi-label">Certificación CEC-EPN en Redes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">5+ Techs</div>
+        <div class="kpi-label">Python, Docker, PostgreSQL, Git, Linux</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num"><i class="fa-solid fa-language" style="color: var(--accent); font-size: 1.3rem;"></i> 3 Idiomas</div>
+        <div class="kpi-label">Español (Nativo), Inglés, Francés</div>
+      </div>
+    </div>
+
+    <!-- Perfil -->
+    <section id="perfil" style="margin-bottom: 3.5rem;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><i class="fa-solid fa-user-check" style="color: var(--brand);"></i> Perfil Profesional</h2>
+          <p class="section-desc">Enfoque metodológico, disciplina técnica y trabajo en equipo.</p>
+        </div>
+      </div>
+      
+      <div class="card" style="border-left: 4px solid var(--brand);">
+        <p style="font-size: 1.08rem; color: var(--text-muted); line-height: 1.8;">
+          Estudiante universitario de la <strong>Escuela Politécnica Nacional</strong> con alta vocación tecnológica e investigativa. 
+          Cuento con habilidades consolidadas para el trabajo multidisciplinario, destacando por una comunicación asertiva, empatía, rápida adaptabilidad 
+          y organización meticulosa. Mi enfoque une la resolución algorítmica de problemas con el despliegue de soluciones contenerizadas y redes seguras, 
+          garantizando altos estándares de calidad tanto en código como en infraestructura.
+        </p>
+      </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" style="margin-bottom: 3.5rem;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><i class="fa-solid fa-layer-group" style="color: var(--brand);"></i> Stack & Certificaciones</h2>
+          <p class="section-desc">Herramientas y competencias validadas en entornos académicos y prácticos.</p>
+        </div>
+      </div>
+
+      <div class="bento-skills">
+        <div class="card">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-code" style="color: var(--brand); margin-right: 8px;"></i>
+            Desarrollo & Backend
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-dim);">Lógica de programación, datos relacionales y control de versiones.</p>
+
+          <div class="skill-badge-grid">
+            <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="tech-pill"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+            <span class="tech-pill"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+            <span class="tech-pill"><i class="fa-brands fa-github"></i> GitHub</span>
+            <span class="tech-pill"><i class="fa-solid fa-server"></i> SQL Relacional</span>
+            <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-network-wired" style="color: var(--accent); margin-right: 8px;"></i>
+            Infraestructura & Redes
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-dim);">Conectividad, protocolos de enrutamiento y switching.</p>
+
+          <div class="cert-box">
+            <div class="cert-title">
+              <i class="fa-solid fa-certificate" style="color: var(--brand);"></i>
+              Certificación CCNA1
+            </div>
+            <div class="cert-issuer">Emitido por CEC-EPN • Redes de Datos y Protocolos</div>
+          </div>
+
+          <div class="skill-badge-grid" style="margin-top: 1rem;">
+            <span class="tech-pill"><i class="fa-solid fa-diagram-project"></i> Subnetting & IP</span>
+            <span class="tech-pill"><i class="fa-solid fa-ethernet"></i> Configuración LAN</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-comments" style="color: var(--success); margin-right: 8px;"></i>
+            Competencias & Idiomas
+          </h3>
+          <div class="skill-badge-grid" style="margin-bottom: 1.2rem;">
+            <span class="tech-pill">Comunicación asertiva</span>
+            <span class="tech-pill">Trabajo en equipo</span>
+            <span class="tech-pill">Organización</span>
+            <span class="tech-pill">Aprendizaje rápido</span>
+          </div>
+
+          <div class="lang-row">
+            <div class="lang-head"><span>Español</span><span style="color: var(--brand);">Nativo</span></div>
+            <div class="lang-track"><div class="lang-meter" style="width: 100%;"></div></div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-head"><span>Inglés</span><span>Intermedio</span></div>
+            <div class="lang-track"><div class="lang-meter" style="width: 65%;"></div></div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-head"><span>Francés</span><span>Básico</span></div>
+            <div class="lang-track"><div class="lang-meter" style="width: 30%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trayectoria -->
+    <section id="trayectoria" style="margin-bottom: 3.5rem;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><i class="fa-solid fa-route" style="color: var(--brand);"></i> Trayectoria & Experiencia</h2>
+          <p class="section-desc">Evolución académica, formación secundaria y experiencia laboral previa.</p>
+        </div>
+      </div>
+
+      <div class="timeline-grid">
+        <div class="card">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-graduation-cap" style="color: var(--brand);"></i>
+            Educación
+          </h3>
+
+          <div class="timeline-node">
+            <span class="timeline-dot"></span>
+            <span class="timeline-date">2024 - Presente</span>
+            <div class="timeline-role">Ingeniería en Sistemas de Información</div>
+            <div class="timeline-inst">Escuela Politécnica Nacional (EPN)</div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Cursando carrera profesional. Especialización en estructuras de datos, arquitectura computacional, base de datos relacionales y análisis de sistemas.
+            </p>
+          </div>
+
+          <div class="timeline-node">
+            <span class="timeline-dot" style="background: var(--text-dim);"></span>
+            <span class="timeline-date">2017 - 2023</span>
+            <div class="timeline-role">Bachiller Técnico - Área Técnica TICs</div>
+            <div class="timeline-inst">Unidad Educativa Fiscal Los Shyris</div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Graduado con enfoque en informática, lógica de algoritmos, redes básicas y mantenimiento de sistemas operativos.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-briefcase" style="color: var(--accent);"></i>
+            Experiencia & Referencia
+          </h3>
+
+          <div class="timeline-node">
+            <span class="timeline-dot" style="background: var(--accent);"></span>
+            <span class="timeline-date">2023 - 2024</span>
+            <div class="timeline-role">Asistente Dental</div>
+            <div class="timeline-inst">Consultorio Dental Bio-dent</div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Gestión operativa, esterilización y estricto control de normas de bioseguridad. Organización rigurosa de insumos y atención personalizada de pacientes.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1.1rem; margin-top: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--brand);">Referencia Verificable</span>
+                <div style="font-weight: 700; font-size: 1rem;">Doctor Mesías Simbaña</div>
+                <div style="font-size: 0.82rem; color: var(--text-dim);">Consultorio Bio-dent</div>
+              </div>
+              <button class="copy-chip" onclick="copyValue('0984586082', 'Teléfono de Referencia')">
+                <i class="fa-solid fa-phone"></i> 0984586082
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" style="margin-bottom: 3rem;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><i class="fa-solid fa-address-card" style="color: var(--brand);"></i> Contacto Directo</h2>
+          <p class="section-desc">Canales oficiales para contacto laboral, pasantías o proyectos colaborativos.</p>
+        </div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="card">
+          <div class="contact-row">
+            <div class="contact-left">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <span class="contact-label">Teléfono Móvil</span>
+                <span class="contact-val">0988983198</span>
+              </div>
+            </div>
+            <button class="copy-chip" onclick="copyValue('0988983198', 'Teléfono')">
+              <i class="fa-regular fa-copy"></i> Copiar
+            </button>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-left">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <span class="contact-label">Correo Electrónico</span>
+                <span class="contact-val">alexanderg10@outlook.com</span>
+              </div>
+            </div>
+            <button class="copy-chip" onclick="copyValue('alexanderg10@outlook.com', 'Correo')">
+              <i class="fa-regular fa-copy"></i> Copiar
+            </button>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-left">
+              <i class="fa-brands fa-linkedin"></i>
+              <div>
+                <span class="contact-label">Perfil Profesional</span>
+                <span class="contact-val">linkedin.com/in/alexander-guerrero</span>
+              </div>
+            </div>
+            <a href="https://linkedin.com/in/alexander-guerrero" target="_blank" rel="noopener noreferrer" class="copy-chip">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir
+            </a>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at top right, rgba(37, 211, 102, 0.1), transparent 70%), var(--bg-card);">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(37, 211, 102, 0.15); display: flex; align-items: center; justify-content: center; color: #25D366; font-size: 2rem; margin-bottom: 1rem;">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Respuesta Inmediata</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.4rem;">
+            Envíame un mensaje de WhatsApp para coordinar entrevistas técnicas o conocer más de mis proyectos.
+          </p>
+          <a href="https://wa.me/593988983198" target="_blank" rel="noopener noreferrer" class="btn-brand" style="background: #25D366; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);">
+            <i class="fa-brands fa-whatsapp"></i> Chatear al 0988983198
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Botón Flotante de WhatsApp (Esquina inferior izquierda) -->
+  <a href="https://wa.me/593988983198" 
+     class="wa-floating-btn" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     title="Contactar a Alexander Guerrero al WhatsApp 0988983198"
+     aria-label="Contactar a Alexander Guerrero por WhatsApp">
+    <div class="wa-icon-circ">
+      <i class="fa-brands fa-whatsapp"></i>
+    </div>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- Toast del sistema -->
+  <div id="sys-toast" role="status" aria-live="polite">
+    <i class="fa-solid fa-circle-check" style="color: var(--brand); font-size: 1.1rem;"></i>
+    <span id="toast-text">Dato copiado con éxito</span>
+  </div>
+
+  <!-- Pie de página -->
+  <footer>
+    <div>© 2026 Alexander Guerrero • Diseñado bajo los 10 Principios Heurísticos de Jakob Nielsen</div>
+    <div style="display: flex; gap: 1rem;">
+      <a href="#inicio" style="color: var(--brand); font-weight: 600;"><i class="fa-solid fa-arrow-up"></i> Volver arriba</a>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Barra de progreso de lectura (Heurística 1)
+    window.addEventListener('scroll', () => {
+      const scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const percentage = (scrollY / docHeight) * 100;
+      document.getElementById('progress-indicator').style.width = percentage + '%';
+
+      highlightNavOnScroll();
+    });
+
+    // 2. Control de Modo Claro / Modo Oscuro (Heurística 3)
+    const themeBtn = document.getElementById('themeSwitcher');
+    const themeIcon = document.getElementById('themeIcon');
+    const rootHtml = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      const isDark = rootHtml.getAttribute('data-theme') === 'dark';
+      const targetTheme = isDark ? 'light' : 'dark';
+      rootHtml.setAttribute('data-theme', targetTheme);
+      themeIcon.className = targetTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      triggerToast(`Modo cambiado a ${targetTheme === 'dark' ? 'Oscuro' : 'Claro'}`);
+    });
+
+    // 3. Conmutador de 3 conceptos de diseño (Heurística 7)
+    const designBtn = document.getElementById('designSwitcher');
+    const designLabel = document.getElementById('designLabel');
+    const designConcepts = [
+      { id: 'aurora', name: 'Estilo: Aurora' },
+      { id: 'editorial', name: 'Estilo: Editorial' },
+      { id: 'cyber', name: 'Estilo: Cyber Tech' }
+    ];
+    let activeDesignIdx = 0;
+
+    designBtn.addEventListener('click', () => {
+      activeDesignIdx = (activeDesignIdx + 1) % designConcepts.length;
+      const nextDesign = designConcepts[activeDesignIdx];
+      rootHtml.setAttribute('data-style', nextDesign.id);
+      designLabel.textContent = nextDesign.name;
+      triggerToast(`Diseño aplicado: ${nextDesign.name}`);
+    });
+
+    // 4. Copiado seguro al portapapeles y prevención de fallos (Heurística 5 & 9)
+    function copyValue(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          triggerToast(`${label} copiado: ${text}`);
+        }).catch(() => fallbackCopy(text, label));
+      } else {
+        fallbackCopy(text, label);
+      }
+    }
+
+    function fallbackCopy(text, label) {
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        triggerToast(`${label} copiado: ${text}`);
+      } catch (err) {
+        triggerToast(`No se pudo copiar automáticamente: ${text}`);
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    // 5. Toast reactivo de estado
+    let toastTimer;
+    function triggerToast(msg) {
+      const toastEl = document.getElementById('sys-toast');
+      const textEl = document.getElementById('toast-text');
+      textEl.textContent = msg;
+      toastEl.classList.add('active');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastEl.classList.remove('active');
+      }, 3200);
+    }
+
+    // 6. Scrollspy para navegación activa (Heurística 6)
+    const watchedSections = document.querySelectorAll('main > section');
+    const navAnchors = document.querySelectorAll('.nav-anchor');
+
+    function highlightNavOnScroll() {
+      const pos = window.scrollY + 200;
+      let activeId = '';
+
+      watchedSections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (pos >= top && pos < top + height) {
+          activeId = sec.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(anchor => {
+        anchor.classList.remove('active');
+        if (anchor.getAttribute('href') === `#${activeId}`) {
+          anchor.classList.add('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
